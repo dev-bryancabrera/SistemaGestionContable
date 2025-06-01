@@ -1,63 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SistemaGestionContable.Helpers;
 
 namespace SistemaGestionContable.Models
 {
     internal class LibroDiario
     {
-        private List<Transaccion> transacciones;
-        // private int IdSiguienteTransaccion;
+        private readonly List<Transaccion> _transacciones;
 
         public LibroDiario()
         {
-            transacciones = new List<Transaccion>();
-            // IdSiguienteTransaccion = 1;
+            _transacciones = new List<Transaccion>();
         }
 
-        public void AgregarTransaccion(Transaccion transaccion)
+        public bool AgregarTransaccion(Transaccion transaccion, out string mensajeError)
         {
-            transacciones.Add(transaccion);
-        }
-
-        public void EliminarTransaccion(int id)
-        {
-            var transaccion = transacciones.FirstOrDefault(t => t.Id == id);
-
-            if (transaccion != null)
+            mensajeError = string.Empty;
+            try
             {
-                transacciones.Remove(transaccion);
-                Console.WriteLine($"Transacción con ID {id} eliminada.");
+                ValidacionHelper.ValidarTransaccion(transaccion);
+                _transacciones.Add(transaccion);
+                return true;
             }
-            else
+            catch (Exception e)
             {
-                Console.WriteLine($"No se encontró una transacción con ID {id}.");
+                mensajeError = e.Message;
+                return false;
             }
         }
-
-        public List<Transaccion> ObtenerTransacciones()
-        {
-            return transacciones;
-        }
-
         public void MostrarTransacciones()
         {
-            foreach (var transaccion in transacciones)
+            if (_transacciones.Count == 0)
             {
-                Console.WriteLine($"ID: {transaccion.Id}, Numero: {transaccion.NumeroTransaccion}");
+                Console.WriteLine($"No existen transacciones\n" +
+                    $"* Utilize la opción 1 para agregar transacciones *");
             }
-        }
-
-        public Transaccion BuscarTransaccionPorId(int id)
-        {
-            if (id > 0)
+            foreach (var transaccion in _transacciones)
             {
-                return transacciones.FirstOrDefault(t => t.Id == id);
+                Console.WriteLine(transaccion.ToString());
             }
-
-            return null;
         }
     }
 }

@@ -12,12 +12,12 @@ namespace SistemaGestionContable.Models
         public int NumeroTransaccion { get; set; }
         public string Descripcion { get; set; }
         public decimal Monto { get; set; }
-        public TipoTransaccion Tipo { get; set; }
+        public string Tipo { get; set; }
         public DateTime FechaTransaccion { get; set; }
 
-        public Transaccion(int id, int numeroTransaccion, string descripcion, decimal monto, TipoTransaccion tipo, DateTime fechaTransaccion)
+        public Transaccion(int numeroTransaccion, string descripcion, decimal monto, string tipo, DateTime fechaTransaccion)
         {
-            Id = id;
+            Id++;
             NumeroTransaccion = numeroTransaccion;
             Descripcion = descripcion;
             Monto = monto;
@@ -27,7 +27,7 @@ namespace SistemaGestionContable.Models
 
         public override string ToString()
         {
-            return $"Transacción #{NumeroTransaccion}:\n- Descripción: {Descripcion}\n- Monto: ${Monto}\n- Tipo: {Tipo.Nombre}\n- Fecha: {FechaTransaccion.ToShortDateString()}";
+            return $"Transacción #{NumeroTransaccion}:\n- Descripción: {Descripcion}\n- Monto: ${Monto}\n- Tipo: {Tipo}\n- Fecha: {FechaTransaccion.ToShortDateString()}";
         }
     }
 }

@@ -43,5 +43,14 @@ namespace SistemaGestionContable.Models
         {
             return reporte.GenerarReporte(_transacciones);
         }
+
+        public void MostrarCalculos()
+        {
+            CalculadoraBasica calculadora = new CalculadoraBasica(_transacciones);
+            Console.WriteLine($"Total Ingresos: {calculadora.CalcularIngresos():C}");
+            Console.WriteLine($"Total Egresos: {calculadora.CalcularEgresos():C}");
+            Console.WriteLine($"Balance: {calculadora.CalcularBalance():C}");
+            Console.WriteLine($"IVA (16%): {calculadora.CalcularIVA(16):C}");
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaGestionContable.Models
 {
-    internal class Transaccion
+    public class Transaccion
     {
         public int Id { get; set; }
         public int NumeroTransaccion { get; set; }

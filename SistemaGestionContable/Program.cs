@@ -1,5 +1,4 @@
-﻿using System.Net.Mail;
-using SistemaGestionContable.Models;
+﻿using SistemaGestionContable.Models;
 
 class Program
 {
@@ -25,6 +24,9 @@ class Program
                     GenerarReporte(libroDiario);
                     break;
                 case "4":
+                    MostrarCalculos(libroDiario);
+                    break;
+                case "5":
                     continuarEjecutando = false;
                     break;
 
@@ -40,7 +42,8 @@ class Program
         Console.WriteLine("1. Agregar Transacción");
         Console.WriteLine("2. Mostrar Transacciones");
         Console.WriteLine("3. Generar Reporte");
-        Console.WriteLine("4. Salir");
+        Console.WriteLine("4. Mostrar Calculos");
+        Console.WriteLine("5. Salir");
         Console.WriteLine("Seleccione una opción: ");
     }
 
@@ -99,5 +102,10 @@ class Program
         string reporte = libroDiario.GenerarReporte(reporteGenerador);
         Console.Clear();
         Console.WriteLine(reporte);
+    }
+
+    static void MostrarCalculos(LibroDiario libroDiario)
+    {
+        libroDiario.MostrarCalculos();
     }
 }

@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        LirboDiario gestor = new LirboDiario();
+        LibroDiario gestor = new LibroDiario();
         int opcion;
         string hola= "hello";
 

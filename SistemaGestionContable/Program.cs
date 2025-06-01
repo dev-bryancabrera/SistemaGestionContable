@@ -1,4 +1,5 @@
-﻿using SistemaGestionContable.Models;
+﻿using System.Net.Mail;
+using SistemaGestionContable.Models;
 
 class Program
 {
@@ -21,6 +22,9 @@ class Program
                     MostrarTransacciones(libroDiario);
                     break;
                 case "3":
+                    GenerarReporte(libroDiario);
+                    break;
+                case "4":
                     continuarEjecutando = false;
                     break;
 
@@ -35,7 +39,8 @@ class Program
     {
         Console.WriteLine("1. Agregar Transacción");
         Console.WriteLine("2. Mostrar Transacciones");
-        Console.WriteLine("3. Salir");
+        Console.WriteLine("3. Generar Reporte");
+        Console.WriteLine("4. Salir");
         Console.WriteLine("Seleccione una opción: ");
     }
 
@@ -67,5 +72,32 @@ class Program
     static void MostrarTransacciones(LibroDiario libroDiario)
     {
         libroDiario.MostrarTransacciones();
+    }
+
+    static void GenerarReporte(LibroDiario libroDiario)
+    {
+        Console.Clear();
+        Console.WriteLine("-- Gneración de Reporte --");
+        Console.WriteLine("1. Reporte de Texto");
+        Console.WriteLine("2. Reporte en formato JSON");
+        string opcionReporte = Console.ReadLine()!.Trim();
+
+        IReporte reporteGenerador;
+
+        switch (opcionReporte)
+        {
+            case "1":
+                reporteGenerador = new ReporteTexto();
+                break;
+            case "2":
+                reporteGenerador = new ReporteJSON();
+                break;
+            default:
+                Console.WriteLine("Opción no válida!");
+                return;
+        }
+        string reporte = libroDiario.GenerarReporte(reporteGenerador);
+        Console.Clear();
+        Console.WriteLine(reporte);
     }
 }

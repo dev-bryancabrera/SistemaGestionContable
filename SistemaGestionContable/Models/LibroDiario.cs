@@ -38,5 +38,10 @@ namespace SistemaGestionContable.Models
                 Console.WriteLine(transaccion.ToString());
             }
         }
+
+        public string GenerarReporte(IReporte reporte)
+        {
+            return reporte.GenerarReporte(_transacciones);
+        }
     }
 }

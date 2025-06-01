@@ -6,6 +6,7 @@ class Program
     {
         GestorContable gestor = new GestorContable();
         int opcion;
+        string hola= "hello";
 
         do
         {

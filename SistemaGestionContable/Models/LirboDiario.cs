@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SistemaGestionContable.Models
 {
-    internal class GestorContable
+    internal class LirboDiario
     {
         private List<Transaccion> transacciones;
         // private int IdSiguienteTransaccion;
 
-        public GestorContable()
+        public LirboDiario()
         {
             transacciones = new List<Transaccion>();
             // IdSiguienteTransaccion = 1;
